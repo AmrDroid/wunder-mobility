@@ -3,6 +3,7 @@
 - [Architecture](#architecture)
 - [Libraries](#libraries)
 - [Screenshots](#screenshots)
+- [Questions](#Questions)
 
 ## Architecture
 
@@ -73,3 +74,22 @@ Libraries used in the whole application are:
   <img src="screens/1.png" width="300">
   <img src="screens/2.png" width="300">
 </p>
+
+
+## Questions:
+
+1-)Describe possible performance optimizations for your Code?
+
+To make the code more scalable, I could use an API filter and it generates APKs specific for device architectures.
+Per-architecture-based APKs based on each architecture is smaller in size due to the inclusion of the device's native code
+The architecture is only compiled in the specified output APK file. Also with a density filter, 
+It generates APK files based on specific device density and screen sizes. In the density block,
+provide a list of desired screen densities and compatible screen sizes that you want to include in the APK generation.
+
+2-)Which things could be done better, than you’ve done it?
+
+-using Jetpack Compose for better performance and awesome ui
+
+-add more test coverage.
+
+-using functional methods like filter, map, and many others.
