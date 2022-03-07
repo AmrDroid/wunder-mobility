@@ -7,6 +7,7 @@ import com.aelsayed.wunder.presentation.model.ViewState
 import com.aelsayed.wunder.presentation.model.carDetailsModel.CarDetails
 import com.aelsayed.wunder.presentation.model.rentModel.Rent
 import com.google.gson.JsonObject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class CarDetailViewModel constructor(
     private val getCarDetailUseCase: MainUseCase<String, Flow<CarDetails>>,
-    private val rentCarUseCase: MainUseCase<Pair<List<String>, JsonObject>, Flow<Rent>>
+    private val rentCarUseCase: MainUseCase<Pair<List<String>, JsonObject>, Flow<Rent>>,
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
 
@@ -36,7 +38,7 @@ class CarDetailViewModel constructor(
     fun carDetails(
         id: String
     ) {
-        viewModelScope.launch(Dispatchers.IO)
+        viewModelScope.launch(defaultDispatcher)
         {
             _carsDetail.emit(ViewState.loading(data = null))
             try {
@@ -63,7 +65,7 @@ class CarDetailViewModel constructor(
         url: String,
         jsonBody: JsonObject
     ) {
-        viewModelScope.launch(Dispatchers.IO)
+        viewModelScope.launch(defaultDispatcher)
         {
             _carsRent.emit(ViewState.loading(data = null))
             try {
